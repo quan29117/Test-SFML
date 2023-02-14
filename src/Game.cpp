@@ -2,21 +2,21 @@
 
 namespace saigo {
 //Private Functions
-void GamePlay::initWindow() {
+void Game::initWindow() {
     this->window = new sf::RenderWindow (sf::VideoMode (1920,1080), "Game", sf::Style::Default );
     this->window->setFramerateLimit(90);
     this->window->setKeyRepeatEnabled(false);
 }
 
-void GamePlay::initObjects() {
+void Game::initObjects() {
     this->player = new Player;
-    this->enemies.push_back( new Enemy_Mob ("Saigo", 600, 20));
-    this->enemies.push_back( new Enemy_Elite ("Dang Minh Quan", 1500, 600));
+    // this->enemies.push_back( new Enemy_Mob ("Saigo", 600, 20));
+    // this->enemies.push_back( new Enemy_Elite ("Dang Minh Quan", 1500, 600));
     // this->enemies.push_back( new Enemy_Boss ("Saigo", 
     //                          1000,   600        ));
 }
 
-size_t GamePlay::RNG() {
+size_t Game::RNG() {
     /**
            Random Number Renegator
      */
@@ -29,7 +29,7 @@ size_t GamePlay::RNG() {
 }
 
 //Constructor - Destructor
-GamePlay::GamePlay() {
+Game::Game() {
 //Init members
     this->initWindow();
     this->initObjects();
@@ -44,7 +44,7 @@ GamePlay::GamePlay() {
     this->enemyNumberMax = 7;
 }
 
-GamePlay::~GamePlay() {
+Game::~Game() {
     delete this->window;
     delete this->player;
 
@@ -58,12 +58,12 @@ GamePlay::~GamePlay() {
 }
 
 //Getter - Setter
-bool GamePlay::isOpen() {
+bool Game::isOpen() {
     return this->window->isOpen();
 }
 
 //Functions
-void GamePlay::pollEvent() {
+void Game::pollEvent() {
     /**
         Polling Event each loop of Gameplay    
      */
@@ -88,19 +88,19 @@ void GamePlay::pollEvent() {
     }
 }
 
-void GamePlay::update() {
+void Game::update() {
     this->updatePlayer();
     this->updateEnemy();
     this->updateBullet();
     this->updateAvatar();
 }
 
-void GamePlay::updatePlayer() {
+void Game::updatePlayer() {
     this->player->update();
     this->playerFire();
 }
 
-void GamePlay::updateEnemy() {
+void Game::updateEnemy() {
     int index = 0;
     while (index < enemies.size()) {
         if (enemies[index]->getStr().size() < 1) enemies.erase(enemies.begin() + index);
@@ -111,13 +111,13 @@ void GamePlay::updateEnemy() {
     
 }
 
-void GamePlay::updateBullet() {
+void Game::updateBullet() {
     for (auto &bullet: this->bullet_player) {
         bullet->update();
     }
 }
 
-void GamePlay::playerFire() {
+void Game::playerFire() {
     for (int i = 0; i < enemies.size(); i++) {
         if ( this->getInput != '\0' &&
                 this->getInput == enemies[i]->getStr() [enemies[i]->getTCN()]) {
@@ -130,7 +130,7 @@ void GamePlay::playerFire() {
     this->getInput = '\0';
 }
 
-void GamePlay::collisionP_E() {
+void Game::collisionP_E() {
     /**
         Collision between Player Bullet and Enemies 
       */
@@ -146,7 +146,7 @@ void GamePlay::collisionP_E() {
                 }
 }
 
-void GamePlay::spawnEnemy() {   //TODO
+void Game::spawnEnemy() {   //TODO
     //RNG for squad
     
 
@@ -160,11 +160,11 @@ void GamePlay::spawnEnemy() {   //TODO
     //
 }
 
-void GamePlay::updateAvatar() {
+void Game::updateAvatar() {
     this->av->Rotate(2.5);
 }
 
-void GamePlay::render() {
+void Game::render() {
     this->window->clear();
 
     //Draw objects

@@ -2,11 +2,11 @@
 
 #include <random>
 #include <vector>
-
 #include <headers/Player.hpp>
 #include <headers/Enemy.hpp>
 #include <headers/Bullet.hpp>
 #include <headers/Avatar.hpp>
+
 /**
     Class Game for game engine
     - window
@@ -17,7 +17,7 @@
 */
 
 namespace saigo {
-class GamePlay {
+class Game {
 private:
 //Members
     //Window
@@ -53,8 +53,8 @@ private:
 
 public:
 //Constructor - Destructor
-    GamePlay();
-    virtual ~GamePlay();
+    Game();
+    virtual ~Game();
 
 //Getter - Setter
     bool isOpen();

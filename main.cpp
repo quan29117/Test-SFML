@@ -3,7 +3,7 @@
 using namespace saigo;
 
 int main (int argc, char* argv[]) {
-    GamePlay game;
+    Game game;
 
     //Game loop
     while (game.isOpen()) {
