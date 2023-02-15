@@ -1,17 +1,10 @@
 #pragma once
 
-#include <random>
-#include <vector>
-#include <headers/Player.hpp>
-#include <headers/Enemy.hpp>
-#include <headers/Bullet.hpp>
-#include <headers/Avatar.hpp>
+#include <headers/Gameplay.hpp>
 
 /**
     Class Game for game engine
     - window
-    - characters
-    - game logic
     - events
     - render
 */
@@ -24,32 +17,12 @@ private:
     sf::RenderWindow *window;
     sf::Event event;
 
-    //Characters
-    Player *player;
-    std::vector <AbstractEnemy*> enemies;
-    
-    //Bullet
-    std::vector <Bullet_Player*> bullet_player;
-
-    //Word
-
-
-//Game logic        - TODO
-    //Progress
-    size_t stageNumber;
-        //time
-
-    //Catch the char if typing successfully
-    char getInput;
-
-    //Spawning Enemies
-    size_t RNG();
-    size_t enemyNumberMax;
-    // std::vector < sf::Vector2f > spawnPos;
+    //Gameplay
+    saigo::Gameplay *game_play;
 
 //Private Functions
     void initWindow();
-    void initObjects();
+    void initGamePlay();
 
 public:
 //Constructor - Destructor
@@ -62,17 +35,6 @@ public:
 //Functions
     void pollEvent();
     void update();
-    void updatePlayer();
-    void updateEnemy();
-    void updateBullet();
-    void playerFire();
-    void collisionP_E();
-    void spawnEnemy();
-
     void render();
-
-//Delete after testing for loop - TODO
-    saigo::Avatar *av;
-    void updateAvatar();
 };    
 }
